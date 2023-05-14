@@ -8,4 +8,17 @@ const removeOldPosts = async () => {
     console.log('remove old posts');
 }
 
+const findAlerts=()=>{
+
+}
+
+const removeOldNotifications =()=>{
+
+}
+
+const removeOldAlerts =()=>{
+
+}
+
+
 module.exports = removeOldPosts;
