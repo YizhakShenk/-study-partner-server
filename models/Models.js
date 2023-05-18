@@ -1,7 +1,7 @@
 
 const RateModel = require('./Rate');
 const PostModel = require('./Post');
-const CategoryModel = require('./Category');
+const CategoryModel = require('./category');
 const SubjectModel = require('./Subject');
 const UserModel = require('./User');
 const UserSubject = require('./UserSubject');
