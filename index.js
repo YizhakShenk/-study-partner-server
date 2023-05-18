@@ -1,6 +1,7 @@
 require('dotenv').config();
 const db = require('./db/mysql');
 const {fillCategoryTable,fillSubjectTable,fillUserAndPostst} = require('./utilities/dbUtilities/fillTables');
+const {CategoryModel, NewPostAlert,NotificationModel, PostModel, RateModel, SubjectModel, UserModel,UserSubject} =require('./models/Models')
 const express = require('express');
 const cookieParser = require('cookie-parser')
 const app = express();
@@ -10,6 +11,7 @@ const cors = require('cors');
 
 const cron = require('node-cron');
 const removeOldPosts = require('./utilities/cronJob/cronJob');
+const User = require('./models/user');
 
 app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001'], credentials: true }));
 app.use(express.json());
@@ -22,6 +24,7 @@ cron.schedule("0 00 * * *",removeOldPosts);
 app.listen(process.env.PORT, () => {
     (async () => {
         await db.sync();
+        
         await fillCategoryTable();
         await fillSubjectTable();
         // console.log(await fillUserAndPostst());/// for testing
