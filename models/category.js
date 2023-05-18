@@ -1,37 +1,30 @@
-const db = require('../db/mysql');
-const { DataTypes, sequalzie } = require('sequelize');
-const SubjectModel = require('./Subject');
-const Category = db.define('category', {
+const db = require("../db/mysql");
+const { DataTypes } = require("sequelize");
+const SubjectModel = require("./subject");
+const Category = db.define(
+  "category",
+  {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
     },
     name: {
-        type: DataTypes.STRING(10),
-        allowNull: false
+      type: DataTypes.STRING(10),
+      allowNull: false,
     },
     user_connected: {
-        type: DataTypes.INTEGER,
-        allowNull: true  ///false
-    }
-},
-    {
-        timestamps: false
-    }
+      type: DataTypes.INTEGER,
+      allowNull: true, ///false
+    },
+  },
+  {
+    timestamps: false,
+  }
 );
 
-Category.hasMany(SubjectModel, { foreignKey: "category_id"});
-SubjectModel.belongsTo(Category,{foreignKey:"category_id"});
-
-
+Category.hasMany(SubjectModel, { foreignKey: "category_id" });
+SubjectModel.belongsTo(Category, { foreignKey: "category_id" });
 
 module.exports = Category;
-
-
-
-
-
-
-
