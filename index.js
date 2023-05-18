@@ -13,7 +13,7 @@ const cron = require('node-cron');
 const removeOldPosts = require('./utilities/cronJob/cronJob');
 const User = require('./models/user');
 
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001','https://study-partner-client.onrender.com'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001','https://study-partner.onrender.com'], credentials: true }));
 app.use(express.json());
 app.use(cookieParser())
 app.use(router);
