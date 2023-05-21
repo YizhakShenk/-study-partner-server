@@ -9,7 +9,7 @@ const testRouter = require('./tests/testDB');
 const cors = require('cors');
 
 const cron = require('node-cron');
-const removeOldPosts = require('./utilities/cronJob/cronJob');
+const {removeOldPosts,removeOldAlerts,removeOldNotifications} = require('./utilities/cronJob/cronJob');
 
 app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001'], credentials: true }));
 app.use(express.json());
@@ -17,7 +17,9 @@ app.use(cookieParser())
 app.use(router);
 app.use(testRouter);
 
-cron.schedule("0 00 * * *",removeOldPosts);
+cron.schedule("0 0 * * *",removeOldPosts);
+cron.schedule("0 0 * * *",removeOldAlerts);
+cron.schedule("0 0 * * *",removeOldNotifications);
 
 app.listen(process.env.PORT, () => {
     (async () => {

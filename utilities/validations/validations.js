@@ -16,7 +16,7 @@ const passwordValid = (password) => { return passwordRegex.test(password) }
 const countryValid = (country) => { return countryRegex.test(country)  }
 const languagesValid = (languages) => { return languagesRegex.test(languages) }
 const phone_numberValid = (phone_number) => { return phoneNumberRegex.test(phone_number) }
-const age_rangeValid = (age) => { return ageRegex.test(age) && (age >16 && age < 100) }
+const ageValid = (age) => { return ageRegex.test(age) && (age >16 && age < 100) }
 
 
 module.exports = {
@@ -26,5 +26,5 @@ module.exports = {
     countryValid,
     languagesValid,
     phone_numberValid,
-    age_rangeValid,
+    ageValid,
 }

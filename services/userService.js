@@ -1,7 +1,7 @@
 const UserRepo = require('../repositories/userRepo');
 const bcrypt = require('bcrypt');
 const BCRYPT_ROUNDS = parseInt(process.env.BCRYPT_ROUNDS);
-const { nameValid, emailValid, passwordValid, countryValid, languagesValid, phone_numberValid, age_rangeValid: ageValid } = require('../utilities/validations/validations');
+const { nameValid, emailValid, passwordValid, countryValid, languagesValid, phone_numberValid, ageValid } = require('../utilities/validations/validations');
 const {convertToReadingPossibility} = require('../utilities/post/adjustungPostData');
 
 const addUser = async (reqBody) => {
@@ -44,23 +44,22 @@ const addUser = async (reqBody) => {
 const getAllUsers = async () => {
     try {
         const answer = await UserRepo.getAllUsers();
-        if (!answer.message) {
+        if (!answer.message !==undefined) {
             const result = answer.map((user) => {
                 return {
-                    id: answer.id,
-                    name: answer.name,
-                    email: answer.email,
-                    country: answer.country,
-                    languages: answer.languages,
-                    phone_number: answer.phone_number,
-                    age: answer.age,
-                    about: answer.about || null,
-                    rate: rate || [],
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    country: user.country,
+                    languages: user.languages,
+                    phone_number: user.phone_number,
+                    age: user.age,
+                    about: user.about || null,
                 }
             })
             return result
         }
-        return answer
+        return user
     }
     catch (err) {
         console.log(err);
