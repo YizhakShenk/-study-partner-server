@@ -5,6 +5,7 @@ const { convertToReadingPossibility } = require('../utilities/post/adjustungPost
 
 const addPost = async (reqBody) => {
     try {
+        console.log('add post serv start')
         const { email, userId, auther_name, category, sub_category, post, date_from, date_to, time_from, time_to, days } = reqBody;
         const postExist = await PostRepo.getExistPost(userId, sub_category, date_from, date_to, time_from, time_to, days);
         if (postExist) {
@@ -16,6 +17,7 @@ const addPost = async (reqBody) => {
         if (alerts && alerts.length > 0) {
             await newPostAlertService.handleSendAlerts(alerts);
         }
+        console.log('add post serv success')
         return answer;
     }
     catch (err) {

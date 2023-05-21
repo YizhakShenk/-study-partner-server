@@ -62,6 +62,7 @@ const getMatchedAlerts = async (
   timeTo
 ) => {
   try {
+    console.log('add post matched alert start')
     const result = await newPostAlertRepo.getMatchedAlerts(
       sub_category,
       dateFrom,
@@ -69,6 +70,8 @@ const getMatchedAlerts = async (
       timeFrom,
       timeTo
     );
+    console.log('add post matched alert success')
+
     return result;
   } catch (err) {
     console.error(err);
