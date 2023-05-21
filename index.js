@@ -16,7 +16,7 @@ app.use(cookieParser())
 app.use(router);
 app.use(testRouter);
 
-cron.schedule("* * * * *",removeOldPosts);
+cron.schedule("0 22 * * *",removeOldPosts);
 cron.schedule("0 0 * * *",removeOldAlerts);
 cron.schedule("0 0 * * *",removeOldNotifications);
 
