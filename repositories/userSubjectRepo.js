@@ -1,4 +1,4 @@
-const { and, Op } = require('sequelize');
+const { Op } = require('sequelize');
 const {UserSubject} = require('../models/Models');
 
 const addUserSubject = async (values) => {
@@ -39,7 +39,6 @@ const removeUserSubject = async (userId,subjectId) => {
         if(!answer){
             throw new Error("error with removing, please check the details and try again");
         }
-        console.log(answer);
         return 'subject deleted from user';
     }
     catch (err) {

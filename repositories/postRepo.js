@@ -37,14 +37,6 @@ const getPost = async (id) => {
 
 const getExistPost = async (userId, sub_category, date_from, date_to, time_from, time_to, days) => {
     try {
-        console.log('...........');
-        console.log(userId); 
-        console.log(sub_category)
-        console.log(date_to)
-        console.log(time_from)
-        console.log(time_to)
-        console.log(days)
-        console.log('...........');
 
         const result = await Models.PostModel.findOne({
             where: {
@@ -79,7 +71,6 @@ const getNeturePost = async (id) => {
 
 const updatePost = async (id, updatedValues) => {
     try {
-        console.log(updatedValues);
         const result = await Models.PostModel.update(updatedValues, { where: { id: id } });
         if (!result[0]) {
             throw new Error('post has not updated');

@@ -1,5 +1,3 @@
-const PostModel = require("../models/Post");
-const UserModel = require("../models/user");
 const PostService = require("../services/PostService");
 
 const addPost = async (req, res) => {
@@ -63,7 +61,6 @@ const updatePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
   try {
-    const { id } = req.body;
     const answer = await PostService.deletePost(req);
     if (answer.message) {
       throw new Error(answer.message);

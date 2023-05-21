@@ -5,6 +5,5 @@ rateRouter.post('/add',addRate);
 rateRouter.post('/get-all',getRates);
 rateRouter.post('/get-one',getRate);
 rateRouter.post('/update',updateRate);
-// rateRouter.post('/delete',deleteRate);
 
 module.exports = rateRouter;

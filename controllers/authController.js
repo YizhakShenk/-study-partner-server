@@ -4,7 +4,6 @@ const AuthService = require('../services/authService');
 const logIn = async (req, res) => {
     try {
         const answer = await AuthService.logIn(req, res);
-        // console.log(answer);
         if (answer.message) {
             throw new Error(answer.message);
         }

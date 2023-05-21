@@ -11,7 +11,6 @@ const { convertToReadingPossibility } = require('../utilities/post/adjustungPost
 const auth = async (req) => {
     try {
         let userId;
-        
         const { id } = req.body
         const cookie = req.headers.cookie || null
         if (!cookie || cookie === undefined) {
@@ -127,7 +126,6 @@ const forgetPassword = async (reqBody) => {
         <p>your temporary password is: ${newPass}  please do not share this password to anybody.. 
         have a nice day !!</p>
         </div>`;
-        // const bodyMessage =`your temporary password is: ${newPass}  please do not share this password to anybody`
         const updatePassword = await UserRepo.updateUser(email, null, { refresh_token: newPass });
         if (updatePassword.message) {
             throw Error('Faild to Update password');

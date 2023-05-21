@@ -27,10 +27,10 @@ const getTimeStr = (timeStemp) => {
 
 
 const convertToReadingPossibility = (post) => {
-    let Tdfr = getDateStr(new Date(post.date_from));
-    let Tdto = getDateStr(new Date(post.date_to));
-    let Tfrom = getTimeStr(post.time_from);
-    let Tto = getTimeStr(post.time_to);
+    let temp_day_from = getDateStr(new Date(post.date_from));
+    let temp_day_to = getDateStr(new Date(post.date_to));
+    let temp_time_from = getTimeStr(post.time_from);
+    let temp_time_to = getTimeStr(post.time_to);
 
 
     return {
@@ -40,12 +40,10 @@ const convertToReadingPossibility = (post) => {
         category: post.category,
         sub_category: post.sub_category,
         post: post.post,
-        date_from: Tdfr,
-        // date_from: `${Tdfr.getDate() < 10 ? "0" : ""}${Tdfr.getDate()}/${Tdfr.getMonth() < 10 ? "0" : ""}${Tdfr.getMonth() + 1}/${Tdfr.getFullYear()}` || null,
-        date_to: Tdto,
-        // date_to: `${Tdto.getDate() < 10 ? "0" : ""}${Tdto.getDate()}/${Tdto.getMonth() < 10 ? "0" : ""}${Tdto.getMonth() + 1}/${Tdto.getFullYear()}` || null,
-        time_from: Tfrom,
-        time_to: Tto,
+        date_from: temp_day_from,
+        date_to: temp_day_to,
+        time_from: temp_time_from,
+        time_to: temp_time_to,
         matched: post.matched,
         days: JSON.parse(post.days)
     }

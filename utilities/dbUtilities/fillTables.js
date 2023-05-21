@@ -4,21 +4,16 @@ const Models = require('../../models/Models');
 const mathID = parseInt(process.env.MATH_CATEGORY);
 const lnaguageID = parseInt(process.env.LANGUAGE_CATEGORY);
 const softwareID = parseInt(process.env.SOFTWARE_CATEGORY);
-// const philosophyID = parseInt(process.env.PHILOSOPHY_CATEGORY);
 
 
 
 
 const fillCategoryTable = async () => {
-    const num = process.env.MATH_CATEGORY
-    console.log(num);
-    console.log(typeof num);
 
     try {
         await Models.CategoryModel.findOrCreate({ where: { id: mathID, name: "Math" } });
         await Models.CategoryModel.findOrCreate({ where: { id: lnaguageID, name: "Languages" } });
         await Models.CategoryModel.findOrCreate({ where: { id: softwareID, name: "Software" } });
-        // await Models.CategoryModel.findOrCreate({ where: { id: philosophyID, name: "Philosophy" } });
         return 'successful';
     }
     catch (err) {

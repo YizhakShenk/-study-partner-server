@@ -1,39 +1,38 @@
-const db = require('../db/mysql');
-const { DataTypes } = require('sequelize');
-const Notification = db.define('notification', {
-
+const db = require("../db/mysql");
+const { DataTypes } = require("sequelize");
+const Notification = db.define(
+  "notification",
+  {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
     },
     user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     url: {
-        type: DataTypes.STRING,
-        allowNull: true
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     title: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     message: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     has_readed: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: 0,
-    }
-
-},
-    {
-        timestamps: true
-    }
+      type: DataTypes.BOOLEAN,
+      defaultValue: 0,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
-module.exports = Notification
-
+module.exports = Notification;

@@ -6,6 +6,4 @@ userSubjectRouter.post('/get-users', userSubjectController.getUsers);
 userSubjectRouter.get('/get-subjects' ,userSubjectController.getSubject);
 userSubjectRouter.post('/remove-user-subject' ,userSubjectController.removeUserSubject);
 
-
-
 module.exports = userSubjectRouter;

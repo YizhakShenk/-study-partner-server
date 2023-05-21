@@ -1,34 +1,31 @@
-const db = require('../db/mysql');
-const { DataTypes } = require('sequelize');
+const db = require("../db/mysql");
+const { DataTypes } = require("sequelize");
 
-
-
-
-const UserSubject = db.define('user_subjects', {
+const UserSubject = db.define(
+  "user_subjects",
+  {
     UserId: {
-        type:DataTypes.INTEGER,
-        references: {
-            model: "User",
-            key: "id"
-        }
+      type: DataTypes.INTEGER,
+      references: {
+        model: "User",
+        key: "id",
+      },
     },
     SubjectId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: "Subject",
-            key: "id",
-        }
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Subject",
+        key: "id",
+      },
     },
-    
-},
-    {
-        timestamps: false
-    });
+  },
+  {
+    timestamps: false,
+  }
+);
 
 (async () => {
-    await db.sync();
-})()
+  await db.sync();
+})();
 
 module.exports = UserSubject;
-
-

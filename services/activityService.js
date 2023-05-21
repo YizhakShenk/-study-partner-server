@@ -1,5 +1,4 @@
 const CLIENT_URL = process.env.CLIENT_URL;
-const activityRepo = require("../repositories/activityRepo");
 const userRepo = require("../repositories/userRepo");
 const postRepo = require("../repositories/postRepo");
 const { addNotification } = require("../repositories/notificationRepo");
@@ -46,12 +45,7 @@ const reactToPost = async (req) => {
         have a nice day !!<br/>
         Study partner office</p>
         </div>`;
-    const sendEmail = await transferMail(
-      user.email,
-      title,
-      "",
-      htmlMessage
-    );
+    const sendEmail = await transferMail(user.email, title, "", htmlMessage);
     if (sendEmail.message) {
       throw new Error(sendEmail.message, url);
     }
@@ -98,7 +92,7 @@ const confirmPost = async (req) => {
     email address: ${autherPost.email}
     // phone number: ${autherPost.phone_number}`;
     // <a href=wa.me/${autherPost.phone_number}>send message</a>
-          // <a href=mailto:${autherPost.email}>send email</a>` 
+    // <a href=mailto:${autherPost.email}>send email</a>`
     const htmlMessage = `<div style="background-color: silver; 
     margin-top: 50px;
     padding: 50px;
@@ -109,14 +103,24 @@ const confirmPost = async (req) => {
           study partner office.<br/>
           <a href=wa.me/${autherPost.phone_number}>send message</a>    
           <a href=mailto:${autherPost.email}>send email</a> 
-          </div>`
-    // email address: ${autherPost.email} 
+          </div>`;
+    // email address: ${autherPost.email}
     // phone number: ${autherPost.phone_number}</p>
-    const transfer = await transferMail(applicant.email, titleMessage, null, htmlMessage);
+    const transfer = await transferMail(
+      applicant.email,
+      titleMessage,
+      null,
+      htmlMessage
+    );
     days[day] = 0;
     const matched = testMatched(days);
     await postRepo.updatePost(post.id, { days, matched: matched });
-    await addNotification(applicant.id, titleMessage, notificationMessage, null);
+    await addNotification(
+      applicant.id,
+      titleMessage,
+      notificationMessage,
+      null
+    );
     return "Email sent to the Partner";
   } catch (err) {
     console.log(err);
@@ -142,7 +146,7 @@ const denyPost = async (req) => {
     if (!applicant) {
       throw new Error("applicant not found.");
     }
-    const titleMessage = `${autherPost.name} cancel the meeting to study together`
+    const titleMessage = `${autherPost.name} cancel the meeting to study together`;
     const notificationMessage = `${autherPost.name} cancel the meeting to study together.\n
     you can try find other partner posts in home page.`;
     const htmlMessage = `<div style=" 
@@ -155,37 +159,25 @@ const denyPost = async (req) => {
             you able to click <a href=${CLIENT_URL}> here </a> to search other user's posts.<br />
             we wish you luck<br />
             study partner office</p>
-    </div>`
+    </div>`;
 
-    const transfer = await transferMail(applicant.email, titleMessage, null, htmlMessage);
+    const transfer = await transferMail(
+      applicant.email,
+      titleMessage,
+      null,
+      htmlMessage
+    );
     if (transfer.message) {
       throw new Error(transfer.message);
     }
     await postRepo.updatePost(postId, { mathed: 1 });
-    await addNotification(applicant.id, titleMessage, notificationMessage, null);
+    await addNotification(
+      applicant.id,
+      titleMessage,
+      notificationMessage,
+      null
+    );
     return "Email sent to the applicant";
-  } catch (err) {
-    console.log(err);
-    return err;
-  }
-};
-
-const rateUser = async (req) => {
-  try {
-    const { email, rate } = req.body;
-    const user = await userRepo.getOneUser(email, null);
-    if (!user) {
-      throw new Error("user not found");
-    }
-    const newRate = (user.rate + rate) / user.num_of_rates;
-    const answer = await userRepo.updateUser(email, null, {
-      rate: newRate,
-      num_of_rates: user.num_of_rates + 1,
-    });
-    if (answer.message) {
-      throw new Error(answer.message);
-    }
-    return JSON.stringify(newRate);
   } catch (err) {
     console.log(err);
     return err;
@@ -196,5 +188,4 @@ module.exports = activityService = {
   reactToPost,
   confirmPost,
   denyPost,
-  rateUser,
 };
