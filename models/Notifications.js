@@ -31,11 +31,9 @@ const Notification = db.define('notification', {
 
 },
     {
-        timestamps: false
+        timestamps: true
     }
 );
-
-
 
 module.exports = Notification
 

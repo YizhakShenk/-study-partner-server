@@ -96,7 +96,9 @@ const confirmPost = async (req) => {
     const notificationMessage = `ypur partner ${autherPost.name} confirmed the meeting to study together..\n
     for more information you can rich him by his phone number or email below \n
     email address: ${autherPost.email}
-    phone number: ${autherPost.phone_number}`;
+    // phone number: ${autherPost.phone_number}`;
+    // <a href=wa.me/${autherPost.phone_number}>send message</a>
+          // <a href=mailto:${autherPost.email}>send email</a>` 
     const htmlMessage = `<div style="background-color: silver; 
     margin-top: 50px;
     padding: 50px;
@@ -105,9 +107,11 @@ const confirmPost = async (req) => {
     <p style="font-size: 17px;"> ypur partner ${autherPost.name} confirmed the meeting to study together<br/>
           for more information you can rich him by his phone number or email below.<br/> have fun.<br/>
           study partner office.<br/>
-          email address: ${autherPost.email} 
-          phone number: ${autherPost.phone_number}</p>
+          <a href=wa.me/${autherPost.phone_number}>send message</a>    
+          <a href=mailto:${autherPost.email}>send email</a> 
           </div>`
+    // email address: ${autherPost.email} 
+    // phone number: ${autherPost.phone_number}</p>
     const transfer = await transferMail(applicant.email, titleMessage, null, htmlMessage);
     days[day] = 0;
     const matched = testMatched(days);

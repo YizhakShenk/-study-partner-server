@@ -25,9 +25,20 @@ const addAlert = async (req) => {
     }
 }
 
+const getAlerts = async()=>{
+    try{
+        const result = await newPostAlertRepo.getAlerts();
+        return result;
+    }
+    catch(err){
+    console.log(err);
+    return err
+    }
+}
+
 const getAlert = async () => {
     try {
-        const result = newPostAlertRepo.getAlert(req)
+        const result = newPostAlertRepo.getAlert()
         return result;
     }
     catch (err) {
@@ -71,6 +82,7 @@ const handleSendAlerts = async (alerts) => {
 
 module.exports = {
     addAlert,
+    getAlerts,
     getAlert,
     getMatchedAlerts,
     handleSendAlerts,

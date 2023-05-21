@@ -14,7 +14,21 @@ const addAlert = async (req,res) => {
     }
 }
 
-const getAlert = async () => {
+const getAlerts = async (req,res) => {
+    try {
+        const result =await newPostAlertService.getAlerts()
+        if(result.message!== undefined){
+            throw Error(result.message)
+        }
+        res.status(200).send(result)
+    }
+    catch (err) {
+        console.error(err)
+        res.status(400).send(err.message)
+    }
+}
+
+const getAlert = async (req,res) => {
     try {
         const result =await newPostAlertService.getAlert(req)
         if(result.message!== undefined){
@@ -30,5 +44,6 @@ const getAlert = async () => {
 
 module.exports = {
     addAlert,
+    getAlerts,
     getAlert,
 }

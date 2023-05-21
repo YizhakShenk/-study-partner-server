@@ -14,6 +14,18 @@ const addAlert = async (user_id, sub_category, date, time) => {
 }
 
 
+const getAlerts = async()=>{
+    try{
+        const result = await NewPostAlert.findAll({where:{id:2}});
+        return result;
+    }
+    catch(err){
+    console.log(err);
+    return err;
+    }
+    
+}
+
 const getAlert = async (user_id, sub_category, date, time) => {
     try {
         const result = await NewPostAlert.findOne({
@@ -85,6 +97,7 @@ const getMatchedAlerts = async (sub_category, dateFrom, dateTo, timeFrom, timeTo
 }
 
 module.exports = {
+    getAlerts,
     addAlert,
     getAlert,
     getMatchedAlerts,

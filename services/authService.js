@@ -10,11 +10,9 @@ const { convertToReadingPossibility } = require('../utilities/post/adjustungPost
 
 const auth = async (req) => {
     try {
+        let userId;
+        
         const { id } = req.body
-        if (!id) {
-            return false;
-        }
-        console.log(req.headers.cookie);
         const cookie = req.headers.cookie || null
         if (!cookie || cookie === undefined) {
             return false;
@@ -26,7 +24,16 @@ const auth = async (req) => {
         const isVarify = jwt.verify(obj.token, process.env.SECRET_KEY);
         if (isVarify.email) {
         }
-        const user = await UserRepo.getOneUser(null, id);
+        if (id===undefined || !id) {
+            userId =obj.id
+        }
+        else {
+            userId =id;
+        }
+        const user = await UserRepo.getOneUser(null, userId);
+        if(user.message !== undefined){
+            throw new Error(user.message)
+        }
         if (!user) {
             return true
         }

@@ -4,7 +4,7 @@ const Models = require('../../models/Models');
 const mathID = parseInt(process.env.MATH_CATEGORY);
 const lnaguageID = parseInt(process.env.LANGUAGE_CATEGORY);
 const softwareID = parseInt(process.env.SOFTWARE_CATEGORY);
-const philosophyID = parseInt(process.env.PHILOSOPHY_CATEGORY);
+// const philosophyID = parseInt(process.env.PHILOSOPHY_CATEGORY);
 
 
 
@@ -18,7 +18,7 @@ const fillCategoryTable = async () => {
         await Models.CategoryModel.findOrCreate({ where: { id: mathID, name: "Math" } });
         await Models.CategoryModel.findOrCreate({ where: { id: lnaguageID, name: "Languages" } });
         await Models.CategoryModel.findOrCreate({ where: { id: softwareID, name: "Software" } });
-        await Models.CategoryModel.findOrCreate({ where: { id: philosophyID, name: "Philosophy" } });
+        // await Models.CategoryModel.findOrCreate({ where: { id: philosophyID, name: "Philosophy" } });
         return 'successful';
     }
     catch (err) {
@@ -32,12 +32,30 @@ const fillSubjectTable = async () => {
         await Models.SubjectModel.findOrCreate({ where: { name: 'English', category_id: lnaguageID } });
         await Models.SubjectModel.findOrCreate({ where: { name: 'Hebrew', category_id: lnaguageID } });
         await Models.SubjectModel.findOrCreate({ where: { name: 'Arabic', category_id: lnaguageID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Spanish', category_id: lnaguageID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'France', category_id: lnaguageID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'German', category_id: lnaguageID } });
+
         await Models.SubjectModel.findOrCreate({ where: { name: 'Linear Algebra', category_id: mathID } });
         await Models.SubjectModel.findOrCreate({ where: { name: 'Geometry', category_id: mathID } });
         await Models.SubjectModel.findOrCreate({ where: { name: 'Statistics', category_id: mathID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Probability', category_id: mathID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Infinitesimal', category_id: mathID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Trigonometry', category_id: mathID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Algebra', category_id: mathID } });
+
         await Models.SubjectModel.findOrCreate({ where: { name: 'JavaScript', category_id: softwareID } });
         await Models.SubjectModel.findOrCreate({ where: { name: 'Java', category_id: softwareID } });
         await Models.SubjectModel.findOrCreate({ where: { name: 'Python', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'C', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'C++', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Nodejs', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Php', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'C#', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Assembly', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Algorithms', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'React', category_id: softwareID } });
+        await Models.SubjectModel.findOrCreate({ where: { name: 'Angular', category_id: softwareID } });
         return 'successful'
     }
     catch (err) {
