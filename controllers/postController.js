@@ -2,13 +2,11 @@ const PostService = require("../services/PostService");
 
 const addPost = async (req, res) => {
   try {
-    console.log('add post ctrl  start')
 
     const answer = await PostService.addPost(req.body);
     if (answer.message !== undefined) {
       throw new Error(answer.message);
     }
-    console.log('add post ctrl  success')
 
     res.status(200).send(answer);
   } catch (err) {

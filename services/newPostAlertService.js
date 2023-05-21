@@ -7,7 +7,6 @@ const { transferMail } = require("../utilities/mailer/mailer");
 const addAlert = async (req) => {
   try {
     const { user_id, sub_category, date, time } = req.body;
-    console.log("userid >>", user_id);
     if (!sub_category && !date && !time) {
       throw new Error("Please fill at least one parameter");
     }
@@ -62,7 +61,6 @@ const getMatchedAlerts = async (
   timeTo
 ) => {
   try {
-    console.log('add post matched alert start')
     const result = await newPostAlertRepo.getMatchedAlerts(
       sub_category,
       dateFrom,
@@ -70,7 +68,6 @@ const getMatchedAlerts = async (
       timeFrom,
       timeTo
     );
-    console.log('add post matched alert success')
 
     return result;
   } catch (err) {

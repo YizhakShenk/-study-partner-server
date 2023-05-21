@@ -4,14 +4,12 @@ const Models = require('../models/Models');
 
 const addPost = async (details) => {
     try {
-        console.log('add post repo start')
         const user = await Models.UserModel.findOne({ where: { id: details.userId } });
 
         if (!user) {
             throw new Error("user does not exist");
         }
         await Models.PostModel.create({ user_id: user.id, auther_name: details.auther_name, category: details.category, sub_category: details.sub_category, post: details.post, date_from: details.date_from, date_to: details.date_to, time_from: details.time_from, time_to: details.time_to, days: details.days });
-        console.log('add post repo succeed')
         return "post added";
     }
     catch (err) {
@@ -40,7 +38,6 @@ const getPost = async (id) => {
 
 const getExistPost = async (userId, sub_category, date_from, date_to, time_from, time_to, days) => {
     try {
-        console.log('add post exist start')
         const result = await Models.PostModel.findOne({
             where: {
                 [Op.and]: [
@@ -54,7 +51,6 @@ const getExistPost = async (userId, sub_category, date_from, date_to, time_from,
                 ]
             }
         })
-        console.log('add post exist success')
         return result;
     }
     catch (err) {
