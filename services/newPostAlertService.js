@@ -93,8 +93,16 @@ const handleSendAlerts = async (alerts) => {
     await notificationRepo.addNotification(item.id, title, message, url);
   });
   const strEmails = emailsArray.toString();
-  console.log({ strEmails });
-  const htmlMessage = `<p>${message} click <a href=${url}> here </a>to view post</p>`; //needs to complete edit
+
+  const htmlMessage = `<div style="background-color: silver; 
+  margin-top: 50px;
+  padding: 50px;
+  text-align:center;">
+      <p style="font-size: 17px;" >${message}<br/>   
+      please click  <a href=${url}> here </a> to view post.<p/>
+      have a nice day !!<br/>
+      Study partner office</p>
+      </div>`; //needs to complete edit
   await transferMail(strEmails, title, null, htmlMessage);
 };
 
