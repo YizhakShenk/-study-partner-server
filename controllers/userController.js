@@ -2,11 +2,13 @@ const UserService = require("../services/userService");
 
 const addUser = async (req, res) => {
   try {
+    console.log('strat cont')
     const answer = await UserService.addUser(req.body);
     if (answer.message) {
       throw new Error(answer.message);
     }
     res.status(200).send(answer);
+
   } catch (err) {
     res.status(400).send(err.message);
   }

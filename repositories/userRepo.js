@@ -1,6 +1,8 @@
 const { UserModel, PostModel, SubjectModel, NotificationModel,RateModel } = require('../models/Models')
 
 const addUser = async (user) => {
+    console.log('start repo')
+    
     try {
         const existuser = await UserModel.findOne({ where: { email: user.email } });
         if (existuser) {

@@ -7,6 +7,7 @@ const {convertToReadingPossibility} = require('../utilities/post/adjustungPostDa
 const addUser = async (reqBody) => {
 
     try {
+        console.log('stert serv')
         const { name, email, password, confirmPassword, country, languages, phone_number, age } = reqBody;
         if (!name || !email || !password || !confirmPassword || !languages) {
             throw new Error('please fill all the fields');
