@@ -76,11 +76,11 @@ const getMatchedAlerts = async (
   }
 };
 
-const handleSendAlerts = async (alerts) => {
-  const title = "someone posted a post you might interesting in";
+const handleSendAlerts = async (alerts, postId) => {
+  const title = "someone posted a post you might interested in";
   const message =
     "someone posted a post that is match with your previous search in the site.";
-  const url = `${CLIENT_URL}`; //needs to complete edit
+  const url = `${CLIENT_URL}?pid=${postId}`; 
   let emailsArray = [];
   let ids = [];
 
@@ -102,7 +102,7 @@ const handleSendAlerts = async (alerts) => {
       please click  <a href=${url}> here </a> to view post.<p/>
       have a nice day !!<br/>
       Study partner office</p>
-      </div>`; //needs to complete edit
+      </div>`; 
   await transferMail(strEmails, title, null, htmlMessage);
 };
 
