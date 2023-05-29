@@ -17,8 +17,8 @@
     "sequelize": "^6.25.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "dav": "nodemon index.js"
+    "start": "nodemon index.js",
+    "dav": "node index.js"
   },
   "keywords": [],
   "author": "",
